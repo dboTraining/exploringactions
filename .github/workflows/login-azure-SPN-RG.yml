@@ -11,9 +11,12 @@ jobs:
         with:
           creds: '${{ secrets.AZURE_CREDENTIALS }}'
 
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
       - name: Deploy Azure Resources with Bicep
         run: |
-          az bicep build -f bicep/SG-for-RG.bicep
+          az bicep build -f SG-for-RG.bicep
           az deployment group create --resource-group azure-training-rg --template-file main.json
         env:
           storageAccountName: mystorageaccount
