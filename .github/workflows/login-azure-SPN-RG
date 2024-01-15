@@ -10,3 +10,11 @@ jobs:
         uses: azure/login@v1
         with:
           creds: '${{ secrets.AZURE_CREDENTIALS }}'
+
+      - name: Deploy Azure Resources with Bicep
+        run: |
+          az bicep build -f bicep/main.bicep
+          az deployment group create --resource-group azure-training-rg --template-file main.json
+        env:
+          storageAccountName: mystorageaccount
+          location: West Europe
