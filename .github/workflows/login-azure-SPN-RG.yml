@@ -16,7 +16,8 @@ jobs:
 
       - name: Deploy Azure Resources with Bicep
         run: |
-          az bicep build -f ${{ github.workspace }}/bicep/SG-for-RG.bicep
+          cd ${{ github.workspace }}/bicep
+          az bicep build -f SG-for-RG.bicep -o main.json
           az deployment group create --resource-group azure-training-rg --template-file main.json
         env:
           storageAccountName: mystorageaccount
