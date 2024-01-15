@@ -16,5 +16,5 @@ jobs:
           az bicep build -f bicep/SG-for-RG.bicep
           az deployment group create --resource-group azure-training-rg --template-file main.json
         env:
-          storageAccountName: TestStorageAccount
+          storageAccountName: mystorageaccount
           location: West Europe
